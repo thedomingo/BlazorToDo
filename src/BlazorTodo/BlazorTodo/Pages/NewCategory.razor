@@ -1,0 +1,27 @@
+﻿@inject IModalService ModalService
+
+<div class="simple-form">
+
+    <div class="form-group">
+        <label for="name">Naziv</label>
+        <input @bind="@category.Name" type="text" class="form-control" id="name" autocomplete="off" />
+    </div>
+
+
+    <button @onclick="@Save" class="btn btn-primary">Shrani</button>
+    <button @onclick="@Cancel" class="btn btn-secondary">Prekliči</button>
+</div>
+
+@code {
+    private Category category = new Category();
+
+    void Save()
+    {
+        ModalService.Close(ModalResult.Ok<Category>(category));
+    }
+
+    void Cancel()
+    {
+        ModalService.Cancel();
+    }
+}
