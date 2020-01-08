@@ -1,0 +1,34 @@
+﻿@page "/datagrid"
+
+@inject WeatherForecastService ForecastService
+
+<h3>Datagrid</h3>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="true" PageSize="4" AllowSorting="true" Data="@forecasts" TItem="WeatherForecast" ColumnWidth="200px">
+        <Columns>
+            <RadzenGridColumn TItem="WeatherForecast" Property="Date" Title="Date">
+                <Template Context="data">
+                    @String.Format("{0:d}", data.Date)
+                </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="WeatherForecast" Property="TemperatureC" Title="°C" />
+            <RadzenGridColumn TItem="WeatherForecast" Property="TemperatureF" Title="°F" />
+            <RadzenGridColumn TItem="WeatherForecast" Property="Summary" Title="Summary" />
+        </Columns>
+    </RadzenGrid>
+}
+
+@code {
+    private WeatherForecast[] forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
