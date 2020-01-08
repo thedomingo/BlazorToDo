@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorTodo.Data;
 using Blazored.Modal;
+using Blazored.Toast;
 
 namespace BlazorTodo
 {
@@ -31,6 +32,7 @@ namespace BlazorTodo
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddBlazoredModal();
+            services.AddBlazoredToast();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

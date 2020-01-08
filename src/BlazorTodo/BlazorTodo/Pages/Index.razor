@@ -1,6 +1,7 @@
 ﻿@page "/"
 
 @inject IModalService Modal
+@inject IToastService toastService
 
 <h1>Blazor To do</h1>
 
@@ -61,7 +62,7 @@
 
 
 @code{
-    private List<Category> categories=new List<Category>();
+    private List<Category> categories = new List<Category>();
     private Category selectedCategory;
 
     private void OpenAddCategoryModal()
@@ -110,11 +111,13 @@
     {
         category.TodoItems.Remove(todo);
         StateHasChanged();
+        toastService.ShowInfo($"Todo '{todo.Name}' je bil izbrisan!", "");
     }
 
     void DeleteCategory(Category category)
     {
         categories.Remove(category);
         StateHasChanged();
+        toastService.ShowInfo($"Kategorija '{category.Name}' je bila izbrisana!", "");
     }
 }
