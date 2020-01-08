@@ -10,7 +10,7 @@
 }
 else
 {
-    <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" AllowPaging="true" PageSize="4" AllowSorting="true" Data="@forecasts" TItem="WeatherForecast" ColumnWidth="200px">
+    <RadzenGrid AllowSorting="true" Data="@forecasts" TItem="WeatherForecast">
         <Columns>
             <RadzenGridColumn TItem="WeatherForecast" Property="Date" Title="Date">
                 <Template Context="data">
